@@ -1,0 +1,13 @@
+# Video files (too large for GitHub)
+*.mp4
+*.MP4
+*.mov
+*.MOV
+*.avi
+*.AVI
+
+# Image files if very large
+*.jpg
+*.jpeg
+*.png
+*.gif
