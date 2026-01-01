@@ -131,6 +131,132 @@
     .cv-button:hover {
       transform: scale(1.1);
     }
+
+    /* PDF Viewer Modal Styles */
+    .pdf-modal {
+      display: none;
+      position: fixed;
+      z-index: 10000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .pdf-modal-content {
+      position: relative;
+      width: 90%;
+      height: 90%;
+      margin: 2% auto;
+      background: #2c2c2c;
+      border-radius: 10px;
+      box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .pdf-modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 25px;
+      background: linear-gradient(135deg, #007BFF, #00C9A7);
+      border-radius: 10px 10px 0 0;
+    }
+
+    .pdf-modal-header h2 {
+      margin: 0;
+      color: white;
+      font-size: 1.3rem;
+    }
+
+    .pdf-close-btn {
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      color: white;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    .pdf-close-btn:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: rotate(90deg);
+    }
+
+    .pdf-iframe-container {
+      flex: 1;
+      padding: 15px;
+      overflow: hidden;
+    }
+
+    .pdf-iframe-container iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 5px;
+    }
+
+    /* Mobile Responsive Styles */
+    @media (max-width: 768px) {
+      .pdf-modal-content {
+        width: 95%;
+        height: 95%;
+        margin: 2.5% auto;
+      }
+
+      .pdf-modal-header {
+        padding: 12px 15px;
+      }
+
+      .pdf-modal-header h2 {
+        font-size: 1rem;
+      }
+
+      .pdf-close-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 24px;
+      }
+
+      .pdf-iframe-container {
+        padding: 10px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .pdf-modal-content {
+        width: 98%;
+        height: 96%;
+        margin: 2% auto;
+      }
+
+      .pdf-modal-header {
+        padding: 10px 12px;
+      }
+
+      .pdf-modal-header h2 {
+        font-size: 0.9rem;
+      }
+
+      .pdf-iframe-container {
+        padding: 8px;
+      }
+    }
   </style>
 </head>
 <body >
@@ -1259,9 +1385,7 @@
           <i class="fas fa-envelope"></i>
         </a>
         
-        <a href="TIRUMALASETTY_SASHI_PAVAN_RESUME_ (1).pdf" 
-          target="_blank" 
-          download="Sashi_Pavan_Resume.pdf"
+        <button onclick="openPDFModal()" 
           style="
             padding: 12px 25px;
             border: none;
@@ -1273,11 +1397,10 @@
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 5px 15px rgba(106,17,203,0.3);
-            text-decoration: none;
             animation: pulse 2s infinite 1.5s;
           ">
-          Download CV
-        </a>
+          View CV
+        </button>
       </div>
     </div>
     
@@ -2196,7 +2319,7 @@ transition:transform 0.3s;font-family:Arial,sans-serif;">
   <div style="height:200px;overflow:hidden;background:#f0f0f0;">
     <video loop muted playsinline preload="none" loading="lazy"
       style="width:100%;height:100%;object-fit:cover;">
-      <source src="DOCSYMP.mp4" type="video/mp4">
+      <source src="https://res.cloudinary.com/dlujb9uqv/video/upload/v1767110021/DOCSYMP_ptncme.mp4" type="video/mp4">
       <img src="https://via.placeholder.com/400x200?text=DOCSYAI+Demo"
            style="width:100%;height:100%;object-fit:cover;">
     </video>
@@ -2292,7 +2415,7 @@ transition:transform 0.3s;font-family:Arial,sans-serif;">
       <div style="background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s;">
         <div style="height: 200px; overflow: hidden; background: #f0f0f0;">
           <video loop muted playsinline preload="none" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;">
-            <source src="MUSIC VIDEO.mp4" type="video/mp4">
+            <source src="https://res.cloudinary.com/dlujb9uqv/video/upload/v1767110069/MUSIC_VIDEO_ezukxo.mp4" type="video/mp4">
             <img src="https://via.placeholder.com/400x200?text=API+Demo" alt="API Integration Demo" style="width: 100%; height: 100%; object-fit: cover;">
           </video>
         </div>
@@ -2326,7 +2449,7 @@ transition:transform 0.3s;font-family:Arial,sans-serif;">
       <div style="background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s;">
         <div style="height: 200px; overflow: hidden; background: #f0f0f0;">
           <video loop muted playsinline preload="none" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;">
-            <source src="CRAKKERS VIDEO.mp4" type="video/mp4">
+            <source src="https://res.cloudinary.com/dlujb9uqv/video/upload/v1767111178/CRAKKERS_VIDEO_skhp3h.mp4" type="video/mp4">
             <img src="https://via.placeholder.com/400x200?text=E-Commerce+Demo" alt="E-Commerce Demo" style="width: 100%; height: 100%; object-fit: cover;">
           </video>
         </div>
@@ -2361,7 +2484,7 @@ transition:transform 0.3s;font-family:Arial,sans-serif;">
       <div style="background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s;">
         <div style="height: 200px; overflow: hidden; background: #f0f0f0;">
           <video loop muted playsinline preload="none" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;">
-            <source src="CAREER TREKKER VIDEO.mp4" type="video/mp4">
+            <source src="https://res.cloudinary.com/dlujb9uqv/video/upload/v1767114496/CAREER_TREKKER_VIDEO_g9ajdn.mp4" type="video/mp4">
             <img src="https://via.placeholder.com/400x200?text=E-Commerce+Demo" alt="E-Commerce Demo" style="width: 100%; height: 100%; object-fit: cover;">
           </video>
         </div>
@@ -2394,7 +2517,7 @@ transition:transform 0.3s;font-family:Arial,sans-serif;">
        <div style="background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s;">
   <div style="height: 200px; overflow: hidden; background: #f0f0f0;">
     <video loop muted playsinline preload="none" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;">
-      <source src="jewelley-website.mp4" type="video/mp4">
+      <source src="https://res.cloudinary.com/dlujb9uqv/video/upload/v1767110063/jewelley-website_afrsgm.mp4" type="video/mp4">
       <img src="https://via.placeholder.com/400x200?text=E-Commerce+Demo" alt="3D Jewels Website Demo" style="width: 100%; height: 100%; object-fit: cover;">
     </video>
   </div>
@@ -2431,7 +2554,7 @@ transition:transform 0.3s;font-family:Arial,sans-serif;">
 <div style="background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s;">
   <div style="height: 200px; overflow: hidden; background: #f0f0f0;">
     <video loop muted playsinline preload="none" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;">
-      <source src="pollGenVideo.mp4" type="video/mp4">
+      <source src="https://res.cloudinary.com/dlujb9uqv/video/upload/v1767111795/pollGenVideo_avjz49.mp4" type="video/mp4">
       <img src="https://via.placeholder.com/400x200?text=Poll+Automation+Demo" alt="Poll Automation Demo" style="width: 100%; height: 100%; object-fit: cover;">
     </video>
   </div>
@@ -2468,7 +2591,10 @@ transition:transform 0.3s;font-family:Arial,sans-serif;">
 <div style="background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s;">
         <div style="height: 200px; overflow: hidden; background: #f0f0f0;">
           <video loop muted playsinline preload="none" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;">
-            <source src="HAND GESTURE COMMUNICATION VIDEO.mp4" type="video/mp4">
+            <source src="https://res.cloudinary.com/dlujb9uqv/video/upload/v1767110040/HAND_GESTURE_COMMUNICATION_VIDEO_cxfztz.mp4
+
+
+" type="video/mp4">
             <img src="https://via.placeholder.com/400x200?text=E-Commerce+Demo" alt="E-Commerce Demo" style="width: 100%; height: 100%; object-fit: cover;">
           </video>
         </div>
@@ -2499,7 +2625,7 @@ transition:transform 0.3s;font-family:Arial,sans-serif;">
 <div style="background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s;">
         <div style="height: 200px; overflow: hidden; background: #f0f0f0;">
           <video loop muted playsinline preload="none" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;">
-            <source src="HAND GESTURE SYSTEM CONTROL VIDEO.mp4" type="video/mp4">
+            <source src="https://res.cloudinary.com/dlujb9uqv/video/upload/v1767112449/HAND_GESTURE_SYSTEM_CONTROL_VIDEO_1_i35yu5.mp4" type="video/mp4">
             <img src="https://via.placeholder.com/400x200?text=E-Commerce+Demo" alt="E-Commerce Demo" style="width: 100%; height: 100%; object-fit: cover;">
           </video>
         </div>
@@ -3520,7 +3646,7 @@ touchless interaction with digital interfaces.</p>
                         <div style="display: flex; flex-direction: column; align-items: center; gap: 20px; background: white; padding: 15px; border-radius: 8px; animation: fadeIn 1s ease-in;">
                             <div style="width: 100%; max-width: 400px; height: auto; aspect-ratio: 2/1; background: #f0e6ff; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
                                 <video loop muted playsinline preload="none" loading="lazy" style="object-fit: contain; width: 100%; height: 100%; border-radius: 8px;" viewBox="0 0 24 24" fill="none" stroke="#8a2be2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <source src="SMART AGE PRISM VIDEO.mp4" type="video/mp4">
+                                    <source src="https://res.cloudinary.com/dlujb9uqv/video/upload/v1767111198/SMART_AGE_PRISM_VIDEO_pdvrz0.mp4" type="video/mp4">
                                 </video>
                             </div>
                             <div style="width: 100%;">
@@ -3542,7 +3668,7 @@ touchless interaction with digital interfaces.</p>
                         <div style="display: flex; flex-direction: column; align-items: center; gap: 20px; background: white; padding: 15px; border-radius: 8px; animation: fadeIn 1s ease-in 0.3s;">
                             <div style="width: 100%; max-width: 400px; height: auto; aspect-ratio: 2/1; background: #f0e6ff; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
                                 <video loop muted playsinline preload="none" loading="lazy" style="object-fit: contain; width: 100%; height: 100%; border-radius: 8px;" viewBox="0 0 24 24" fill="none" stroke="#8a2be2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <source src="TO DO LIST VIDEO.mp4" type="video/mp4">
+                                    <source src="https://res.cloudinary.com/dlujb9uqv/video/upload/v1767111207/TO_DO_LIST_VIDEO_r4pxoa.mp4" type="video/mp4">
                                 </video>
                             </div>
                             <div style="width: 100%;">
@@ -3564,7 +3690,7 @@ touchless interaction with digital interfaces.</p>
                         <div style="display: flex; flex-direction: column; align-items: center; gap: 20px; background: white; padding: 15px; border-radius: 8px; animation: fadeIn 1s ease-in 0.6s;">
                             <div style="width: 100%; max-width: 400px; height: auto; aspect-ratio: 2/1; background: #f0e6ff; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
                                 <video loop muted playsinline preload="none" loading="lazy" style="object-fit: contain; width: 100%; height: 100%; border-radius: 8px;" viewBox="0 0 24 24" fill="none" stroke="#8a2be2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <source src="LIBRARY VIDEO.mp4" type="video/mp4">
+                                    <source src="https://res.cloudinary.com/dlujb9uqv/video/upload/v1767111191/LIBRARY_VIDEO_bsgnq4.mp4" type="video/mp4">
                                 </video>
                             </div>
                             <div style="width: 100%;">
@@ -3586,7 +3712,7 @@ touchless interaction with digital interfaces.</p>
                         <div style="display: flex; flex-direction: column; align-items: center; gap: 20px; background: white; padding: 15px; border-radius: 8px; animation: fadeIn 1s ease-in 0.6s;">
                             <div style="width: 100%; max-width: 400px; height: auto; aspect-ratio: 2/1; background: #f0e6ff; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
                                 <video loop muted playsinline preload="none" loading="lazy" style="object-fit: contain; width: 100%; height: 100%; border-radius: 8px;" viewBox="0 0 24 24" fill="none" stroke="#8a2be2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <source src="MUSIC VIDEO.mp4" type="video/mp4">
+                                    <source src="https://res.cloudinary.com/dlujb9uqv/video/upload/v1767110069/MUSIC_VIDEO_ezukxo.mp4" type="video/mp4">
                                 </video>
                             </div>
                             <div style="width: 100%;">
@@ -4779,6 +4905,47 @@ background: linear-gradient(135deg, #dbeafe 0%, #f0f9ff 100%);
         document.getElementById('header-placeholder').innerHTML = data;
       })
       .catch(error => console.error('Error loading header:', error));
+
+    // PDF Modal Functions
+    function openPDFModal() {
+      const modal = document.getElementById('pdfModal');
+      modal.style.display = 'block';
+      document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    }
+
+    function closePDFModal() {
+      const modal = document.getElementById('pdfModal');
+      modal.style.display = 'none';
+      document.body.style.overflow = 'auto'; // Restore scrolling
+    }
+
+    // Close modal when clicking outside the content
+    window.onclick = function(event) {
+      const modal = document.getElementById('pdfModal');
+      if (event.target === modal) {
+        closePDFModal();
+      }
+    }
+
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') {
+        closePDFModal();
+      }
+    });
   </script>
+
+  <!-- PDF Viewer Modal -->
+  <div id="pdfModal" class="pdf-modal">
+    <div class="pdf-modal-content">
+      <div class="pdf-modal-header">
+        <h2>Sashi Pavan's Resume</h2>
+        <button class="pdf-close-btn" onclick="closePDFModal()">&times;</button>
+      </div>
+      <div class="pdf-iframe-container">
+        <iframe src="TIRUMALASETTY_SASHI_PAVAN_RESUME_ (1).pdf" title="Resume PDF Viewer"></iframe>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
